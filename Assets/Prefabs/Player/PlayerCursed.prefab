@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8642732563119838617}
   - component: {fileID: 8642732563119838618}
   - component: {fileID: 8642732563119838599}
-  - component: {fileID: 8642732563119838619}
+  - component: {fileID: 2138195978}
   m_Layer: 8
   m_Name: PlayerCursed
   m_TagString: Player
@@ -79,10 +79,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1758694683
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300028, guid: 15b407f3e228b484c8a8b51a211b559b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9622642, g: 0.86694556, b: 0.86694556, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8642732563119838619}
+      - m_Target: {fileID: 2138195978}
         m_TargetAssemblyTypeName: UDC_gameJam_player.Jump, Assembly-CSharp
         m_MethodName: jumpKeyPressed
         m_Mode: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalSpeed: 15
---- !u!114 &8642732563119838619
+--- !u!114 &2138195978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,12 +297,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8642732563119838594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a247cefafd93c48b35ad4fc3770608, type: 3}
+  m_Script: {fileID: 11500000, guid: e530d7c3d28ec2842883ea80195f77d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForceMagitude: 10
-  detectGroundCircleRadius: 0.89
-  timeToJumpAfterLeavingGround: 0.5
+  detectGroundCircleRadius: 1
+  timeToJumpAfterLeavingGround: 0.15
   currentTimeLeftToJump: 0
 --- !u!1 &8642732563443348224
 GameObject:
@@ -5089,8 +5089,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1758694683
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

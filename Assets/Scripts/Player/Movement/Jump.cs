@@ -8,14 +8,16 @@ namespace UDC_gameJam_player
     public class Jump : Abilities
     {
 
-        [SerializeField] float jumpForceMagitude = 10f;
-        [SerializeField] float detectGroundCircleRadius = 1f;
-        [SerializeField] float timeToJumpAfterLeavingGround = .5f;
+        [SerializeField] protected float jumpForceMagitude = 10f;
+        [SerializeField] protected float detectGroundCircleRadius = 1f;
+        [SerializeField] protected float timeToJumpAfterLeavingGround = .5f;
         
         
         
         protected bool jumpPressed;
+        protected int jumpCount;
         public float  currentTimeLeftToJump;
+        
 
         protected override void initialize()
         {
@@ -25,7 +27,7 @@ namespace UDC_gameJam_player
         }
 
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
             if (!checkIfPlayerOnGround(detectGroundCircleRadius))
             {
@@ -33,6 +35,7 @@ namespace UDC_gameJam_player
             }else
             {
                 currentTimeLeftToJump = timeToJumpAfterLeavingGround;
+                jumpCount = 0;
             }
         }
 
@@ -48,18 +51,13 @@ namespace UDC_gameJam_player
 
         }
 
-        protected void PerformJump()
+        protected virtual void PerformJump()
         {
             if (checkIfPlayerOnGround(detectGroundCircleRadius) || currentTimeLeftToJump > 0)
             {
                 body.AddForce(Vector2.up * jumpForceMagitude, ForceMode2D.Impulse);
-            }else
-            {
-                Debug.Log("Ground not detected");
             }
         }
-
-
 
 
 

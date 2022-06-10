@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Boundary
+  - PowerUp
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Ground
   - Boundary
   - Player
-  - 
+  - PowerUp
   - 
   - 
   - 
@@ -54,6 +55,9 @@ TagManager:
     locked: 0
   - name: Platform
     uniqueID: 3244746839
+    locked: 0
+  - name: PowerUp
+    uniqueID: 4158229957
     locked: 0
   - name: Player
     uniqueID: 2536272613
