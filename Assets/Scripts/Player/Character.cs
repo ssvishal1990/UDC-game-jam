@@ -6,7 +6,7 @@ namespace UDC_gameJam_player
 {
     public class Character : MonoBehaviour
     {
-        protected CircleCollider2D bodyCollider;
+        protected CapsuleCollider2D bodyCollider;
         protected Rigidbody2D body;
         protected Animator animator;
         protected UDCgamejam playerInputActions;
@@ -21,7 +21,7 @@ namespace UDC_gameJam_player
 
         protected virtual void initialize()
         {
-            bodyCollider = GetComponent<CircleCollider2D>();
+            bodyCollider = GetComponent<CapsuleCollider2D>();
             body = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             playerInputActions = new UDCgamejam();
@@ -36,13 +36,14 @@ namespace UDC_gameJam_player
 
         protected bool checkIfPlayerOnGround(float detectGroundCircleRadius)
         {
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectGroundCircleRadius);
-            foreach (Collider2D hit in hits)
+            //Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectGroundCircleRadius);
+
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, detectGroundCircleRadius, LayerMask.GetMask("Ground"));
+            
+            if (hits.Length > 0)
             {
-                if (hit.gameObject.layer == LayerMask.GetMask("Ground"))
-                {
-                    return true;
-                }
+                Debug.DrawLine(transform.position, hits[0].point);
+                return true;
             }
             return false;
         }

@@ -9,40 +9,56 @@ namespace UDC_gameJam_player
     {
 
         [SerializeField] float jumpForceMagitude = 10f;
-        [SerializeField] public float detectGroundCircleRadius = 1f;
+        [SerializeField] float detectGroundCircleRadius = 1f;
+        [SerializeField] float timeToJumpAfterLeavingGround = .5f;
+        
+        
+        
         protected bool jumpPressed;
+        public float  currentTimeLeftToJump;
+
         protected override void initialize()
         {
             base.initialize();
             jumpPressed = false;
+            currentTimeLeftToJump = timeToJumpAfterLeavingGround;
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (!checkIfPlayerOnGround(detectGroundCircleRadius))
+            {
+                updateCurrentTimeLeftToJump();
+            }else
+            {
+                currentTimeLeftToJump = timeToJumpAfterLeavingGround;
+            }
+        }
 
+        private void updateCurrentTimeLeftToJump()
+        {
+            currentTimeLeftToJump -= Time.deltaTime;
         }
 
         public void jumpKeyPressed(InputAction.CallbackContext context)
         {
-            if (context.started || context.canceled) return;
+            if (context.started || context.canceled ) return;
             PerformJump();
 
         }
 
         protected void PerformJump()
         {
-            if (checkIfPlayerOnGround(detectGroundCircleRadius))
+            if (checkIfPlayerOnGround(detectGroundCircleRadius) || currentTimeLeftToJump > 0)
             {
                 body.AddForce(Vector2.up * jumpForceMagitude, ForceMode2D.Impulse);
+            }else
+            {
+                Debug.Log("Ground not detected");
             }
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, detectGroundCircleRadius);
-        }
 
 
 
